@@ -1,0 +1,51 @@
+package photon
+
+option cc_generic_services = true;
+
+message Key {
+    optional bytes key = 1;
+};
+
+message KeySet {
+    repeated bytes keys = 1;
+};
+
+message Value {
+    optional bytes value = 1;
+};
+
+message ValueSet {
+    repeated bytes values = 1;
+};
+
+message Record {
+    optional bytes key = 1;
+    optional bytes value = 2;
+};
+
+message RecordSet {
+    repeated bytes keys = 1;
+    repeated bytes values = 2;
+};
+
+message Status {
+    optional int32 ret = 1;
+    optional string msg = 2;
+    optional Value value = 3;
+};
+
+message StatusSet {
+    optional int32 ret = 1;
+    optional string msg = 2;
+    repeated Status statuses = 3;
+};
+
+rpc PhotonDBService {
+    rpc get(Key) returns(Status)
+    rpc mget(KeySet) returns(StatusSet)
+    rpc set(Record) returns(Status)
+    rpc mset(RecordSet) returns(StatusSet)
+};
+
+rpc PhotonCMDService {
+};
