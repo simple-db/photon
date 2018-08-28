@@ -6,7 +6,7 @@ include_directories(./src)
 
 aux_source_directory(./src SRCS)
 
-link_libraries(brpc protobuf gflags glog leveldb pthread ssl crypto dl rt)
+link_libraries(brpc protobuf gflags leveldb pthread ssl crypto dl rt)
 
 add_definitions(-std=c++11 -static)
 

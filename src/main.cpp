@@ -5,7 +5,6 @@
 //**********************************************************
 
 #include <gflags/gflags.h>
-#include <glog/logging.h>
 
 #include "service.h"
 
@@ -15,9 +14,6 @@ namespace photon {
 
 int run(int argc, char** argv) {
     google::ParseCommandLineFlags(&argc, &argv, true);
-    google::InitGoogleLogging((const char *)argv[0]);
-
-    LOG(INFO) << "photon start";
 
     Service service;
 
@@ -27,7 +23,6 @@ int run(int argc, char** argv) {
         sleep(1);
     }
 
-    google::ShutdownGoogleLogging();
     return 0;
 }
 
