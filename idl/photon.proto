@@ -1,4 +1,4 @@
-package photon
+package photon;
 
 option cc_generic_services = true;
 
@@ -40,12 +40,12 @@ message StatusSet {
     repeated Status statuses = 3;
 };
 
-rpc PhotonDBService {
-    rpc get(Key) returns(Status)
-    rpc mget(KeySet) returns(StatusSet)
-    rpc set(Record) returns(Status)
-    rpc mset(RecordSet) returns(StatusSet)
+service PhotonDBService {
+    rpc get(Key) returns(Status);
+    rpc mget(KeySet) returns(StatusSet);
+    rpc set(Record) returns(Status);
+    rpc mset(RecordSet) returns(StatusSet);
 };
 
-rpc PhotonCMDService {
+service PhotonCMDService {
 };

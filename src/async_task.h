@@ -1,5 +1,5 @@
 //**********************************************************
-// File: table.h
+// File: async_task.h
 // Author: wtzhuque@163.com
 // Description:
 //**********************************************************
@@ -8,11 +8,7 @@
 
 namespace photon {
 
-class Entry {
-public:
-    Entry();
-
-    ~Entry();
-}; // class Entry
+class AsyncTask {
+}; // class AsyncTask
 
 } // namespace photon
