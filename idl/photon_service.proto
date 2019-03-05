@@ -1,3 +1,5 @@
+syntax="proto2";
+
 package photon;
 
 option cc_generic_services = true;
@@ -40,6 +42,15 @@ message StatusSet {
     repeated Status statuses = 3;
 };
 
+message CMD {
+	optional string cmd = 1;
+};
+
+message CMDStatus {
+	optional int32 error = 1;
+	optional string msg = 2;
+};
+
 service PhotonDBService {
     rpc get(Key) returns(Status);
     rpc mget(KeySet) returns(StatusSet);
@@ -48,4 +59,5 @@ service PhotonDBService {
 };
 
 service PhotonCMDService {
+	rpc cmd(CMD) returns(CMDStatus);
 };

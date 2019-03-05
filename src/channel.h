@@ -1,5 +1,5 @@
 //**********************************************************
-// File: options.h
+// File: channel.h
 // Author: wtzhuque@163.com
 // Description:
 //**********************************************************
@@ -8,10 +8,11 @@
 
 namespace photon {
 
-class Options {
+class Channel {
 public:
-	int num_channels {8};
-	int num_segments {32};
-}; // class Options
+	Channel();
+
+	~Channel();
+}; // class Channel
 
 } // namespace photon

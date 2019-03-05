@@ -1,17 +1,17 @@
 //**********************************************************
-// File: options.h
+// File: channel.cpp
 // Author: wtzhuque@163.com
 // Description:
 //**********************************************************
 
-#pragma once
+#include "channel.h"
 
 namespace photon {
 
-class Options {
-public:
-	int num_channels {8};
-	int num_segments {32};
-}; // class Options
+Channel::Channel() {
+}
+
+Channel::~Channel() {
+}
 
 } // namespace photon

@@ -37,6 +37,8 @@ void protobuf_AddDesc_photon_5fservice_2eproto();
 void protobuf_AssignDesc_photon_5fservice_2eproto();
 void protobuf_ShutdownFile_photon_5fservice_2eproto();
 
+class CMD;
+class CMDStatus;
 class Key;
 class KeySet;
 class Record;
@@ -913,6 +915,212 @@ class StatusSet : public ::google::protobuf::Message /* @@protoc_insertion_point
   void InitAsDefaultInstance();
   static StatusSet* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class CMD : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:photon.CMD) */ {
+ public:
+  CMD();
+  virtual ~CMD();
+
+  CMD(const CMD& from);
+
+  inline CMD& operator=(const CMD& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CMD& default_instance();
+
+  void Swap(CMD* other);
+
+  // implements Message ----------------------------------------------
+
+  inline CMD* New() const { return New(NULL); }
+
+  CMD* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CMD& from);
+  void MergeFrom(const CMD& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(CMD* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string cmd = 1;
+  bool has_cmd() const;
+  void clear_cmd();
+  static const int kCmdFieldNumber = 1;
+  const ::std::string& cmd() const;
+  void set_cmd(const ::std::string& value);
+  void set_cmd(const char* value);
+  void set_cmd(const char* value, size_t size);
+  ::std::string* mutable_cmd();
+  ::std::string* release_cmd();
+  void set_allocated_cmd(::std::string* cmd);
+
+  // @@protoc_insertion_point(class_scope:photon.CMD)
+ private:
+  inline void set_has_cmd();
+  inline void clear_has_cmd();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr cmd_;
+  friend void  protobuf_AddDesc_photon_5fservice_2eproto();
+  friend void protobuf_AssignDesc_photon_5fservice_2eproto();
+  friend void protobuf_ShutdownFile_photon_5fservice_2eproto();
+
+  void InitAsDefaultInstance();
+  static CMD* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CMDStatus : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:photon.CMDStatus) */ {
+ public:
+  CMDStatus();
+  virtual ~CMDStatus();
+
+  CMDStatus(const CMDStatus& from);
+
+  inline CMDStatus& operator=(const CMDStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CMDStatus& default_instance();
+
+  void Swap(CMDStatus* other);
+
+  // implements Message ----------------------------------------------
+
+  inline CMDStatus* New() const { return New(NULL); }
+
+  CMDStatus* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CMDStatus& from);
+  void MergeFrom(const CMDStatus& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(CMDStatus* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 error = 1;
+  bool has_error() const;
+  void clear_error();
+  static const int kErrorFieldNumber = 1;
+  ::google::protobuf::int32 error() const;
+  void set_error(::google::protobuf::int32 value);
+
+  // optional string msg = 2;
+  bool has_msg() const;
+  void clear_msg();
+  static const int kMsgFieldNumber = 2;
+  const ::std::string& msg() const;
+  void set_msg(const ::std::string& value);
+  void set_msg(const char* value);
+  void set_msg(const char* value, size_t size);
+  ::std::string* mutable_msg();
+  ::std::string* release_msg();
+  void set_allocated_msg(::std::string* msg);
+
+  // @@protoc_insertion_point(class_scope:photon.CMDStatus)
+ private:
+  inline void set_has_error();
+  inline void clear_has_error();
+  inline void set_has_msg();
+  inline void clear_has_msg();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr msg_;
+  ::google::protobuf::int32 error_;
+  friend void  protobuf_AddDesc_photon_5fservice_2eproto();
+  friend void protobuf_AssignDesc_photon_5fservice_2eproto();
+  friend void protobuf_ShutdownFile_photon_5fservice_2eproto();
+
+  void InitAsDefaultInstance();
+  static CMDStatus* default_instance_;
+};
 // ===================================================================
 
 class PhotonDBService_Stub;
@@ -1011,6 +1219,10 @@ class PhotonCMDService : public ::google::protobuf::Service {
 
   static const ::google::protobuf::ServiceDescriptor* descriptor();
 
+  virtual void cmd(::google::protobuf::RpcController* controller,
+                       const ::photon::CMD* request,
+                       ::photon::CMDStatus* response,
+                       ::google::protobuf::Closure* done);
 
   // implements Service ----------------------------------------------
 
@@ -1040,6 +1252,10 @@ class PhotonCMDService_Stub : public PhotonCMDService {
 
   // implements PhotonCMDService ------------------------------------------
 
+  void cmd(::google::protobuf::RpcController* controller,
+                       const ::photon::CMD* request,
+                       ::photon::CMDStatus* response,
+                       ::google::protobuf::Closure* done);
  private:
   ::google::protobuf::RpcChannel* channel_;
   bool owns_channel_;
@@ -1749,7 +1965,151 @@ StatusSet::statuses() const {
   return statuses_;
 }
 
+// -------------------------------------------------------------------
+
+// CMD
+
+// optional string cmd = 1;
+inline bool CMD::has_cmd() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CMD::set_has_cmd() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CMD::clear_has_cmd() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CMD::clear_cmd() {
+  cmd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_cmd();
+}
+inline const ::std::string& CMD::cmd() const {
+  // @@protoc_insertion_point(field_get:photon.CMD.cmd)
+  return cmd_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CMD::set_cmd(const ::std::string& value) {
+  set_has_cmd();
+  cmd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:photon.CMD.cmd)
+}
+inline void CMD::set_cmd(const char* value) {
+  set_has_cmd();
+  cmd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:photon.CMD.cmd)
+}
+inline void CMD::set_cmd(const char* value, size_t size) {
+  set_has_cmd();
+  cmd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:photon.CMD.cmd)
+}
+inline ::std::string* CMD::mutable_cmd() {
+  set_has_cmd();
+  // @@protoc_insertion_point(field_mutable:photon.CMD.cmd)
+  return cmd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CMD::release_cmd() {
+  // @@protoc_insertion_point(field_release:photon.CMD.cmd)
+  clear_has_cmd();
+  return cmd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CMD::set_allocated_cmd(::std::string* cmd) {
+  if (cmd != NULL) {
+    set_has_cmd();
+  } else {
+    clear_has_cmd();
+  }
+  cmd_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), cmd);
+  // @@protoc_insertion_point(field_set_allocated:photon.CMD.cmd)
+}
+
+// -------------------------------------------------------------------
+
+// CMDStatus
+
+// optional int32 error = 1;
+inline bool CMDStatus::has_error() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CMDStatus::set_has_error() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CMDStatus::clear_has_error() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CMDStatus::clear_error() {
+  error_ = 0;
+  clear_has_error();
+}
+inline ::google::protobuf::int32 CMDStatus::error() const {
+  // @@protoc_insertion_point(field_get:photon.CMDStatus.error)
+  return error_;
+}
+inline void CMDStatus::set_error(::google::protobuf::int32 value) {
+  set_has_error();
+  error_ = value;
+  // @@protoc_insertion_point(field_set:photon.CMDStatus.error)
+}
+
+// optional string msg = 2;
+inline bool CMDStatus::has_msg() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CMDStatus::set_has_msg() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CMDStatus::clear_has_msg() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CMDStatus::clear_msg() {
+  msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_msg();
+}
+inline const ::std::string& CMDStatus::msg() const {
+  // @@protoc_insertion_point(field_get:photon.CMDStatus.msg)
+  return msg_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CMDStatus::set_msg(const ::std::string& value) {
+  set_has_msg();
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:photon.CMDStatus.msg)
+}
+inline void CMDStatus::set_msg(const char* value) {
+  set_has_msg();
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:photon.CMDStatus.msg)
+}
+inline void CMDStatus::set_msg(const char* value, size_t size) {
+  set_has_msg();
+  msg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:photon.CMDStatus.msg)
+}
+inline ::std::string* CMDStatus::mutable_msg() {
+  set_has_msg();
+  // @@protoc_insertion_point(field_mutable:photon.CMDStatus.msg)
+  return msg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CMDStatus::release_msg() {
+  // @@protoc_insertion_point(field_release:photon.CMDStatus.msg)
+  clear_has_msg();
+  return msg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CMDStatus::set_allocated_msg(::std::string* msg) {
+  if (msg != NULL) {
+    set_has_msg();
+  } else {
+    clear_has_msg();
+  }
+  msg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), msg);
+  // @@protoc_insertion_point(field_set_allocated:photon.CMDStatus.msg)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
