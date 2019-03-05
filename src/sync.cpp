@@ -6,11 +6,23 @@
 
 #include "sync.h"
 
+#include <braft/raft.h>
+
 namespace {
 	static ::photon::Sync* g_instance = nullptr;
 }
 
 namespace photon {
+
+/**
+ * @brief callback of braft
+ */
+class DBSetClosure : public braft::Closure {
+public:
+    void Run() {
+		// TODO
+	}
+}; // class DBClosure
 
 Sync& Sync::instance() {
 	if (g_instance == nullptr) {

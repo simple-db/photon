@@ -27,9 +27,15 @@ public:
 
 	int destroy();
 
-	int get();
+    /**
+     * @brief handle get request
+     */
+	int get(const Key* key, Status* status);
 
-	int set();
+    /**
+     * @brief handle set request
+     */
+	int set(const Record* key, Status* status);
 
 	int mget();
 

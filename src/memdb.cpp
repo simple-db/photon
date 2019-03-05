@@ -10,7 +10,7 @@
 #include "segment.h"
 
 namespace {
-	static ::photon::MemDB* g_instance = nullptr;
+    static ::photon::MemDB* g_instance = nullptr;
 }
 
 namespace photon {

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "options.h"
+
 namespace photon {
 
 class Sync {
@@ -18,6 +20,10 @@ public:
 	int init(const Options& option);
 
 	int destroy();
+
+    bool sync(const RecordSet* records);
+
+    bool sync(const Record* record);
 
 private:
 	Sync() {}
