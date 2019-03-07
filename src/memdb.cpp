@@ -34,11 +34,11 @@ int MemDB::destroy() {
 	return 0;
 }
 
-int MemDB::get() {
+int MemDB::get(const Key* key, Status* status) {
 	return 0;
 }
 
-int MemDB::set() {
+int MemDB::set(const Record* key, Status* status) {
 	return 0;
 }
 

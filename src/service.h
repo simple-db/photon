@@ -7,6 +7,7 @@
 #pragma once
 
 #include <brpc/server.h>
+#include "options.h"
 
 namespace photon {
 
@@ -15,7 +16,7 @@ class CMDServiceImpl;
 
 class Service {
 public:
-    Service();
+    Service(const Options& options);
 
     ~Service();
 

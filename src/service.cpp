@@ -8,59 +8,13 @@
 
 #include <butil/logging.h>
 
-#include "photon.pb.h"
-#include "memdb.h"
+#include "db_service.h"
+#include "cmd_service.h"
 
 namespace photon {
 
-class DBServiceImpl : public PhotonDBService {
-public:
-    DBServiceImpl() {}
-
-    ~DBServiceImpl() {}
-
-    virtual void get(::google::protobuf::RpcController* controller,
-                     const ::photon::Key* request,
-                     ::photon::Status* response,
-                     ::google::protobuf::Closure* done) {
-		MemDB& db = MemDB::instance();
-		db.get();
-    }
-
-    virtual void mget(::google::protobuf::RpcController* controller,
-                      const ::photon::KeySet* request,
-                      ::photon::StatusSet* response,
-                      ::google::protobuf::Closure* done) {
-		MemDB& db = MemDB::instance();
-		db.mget();
-    }
-
-    virtual void set(::google::protobuf::RpcController* controller,
-                     const ::photon::Record* request,
-                     ::photon::Status* response,
-                     ::google::protobuf::Closure* done) {	
-		MemDB& db = MemDB::instance();
-		db.set();
-    }
-
-    virtual void mset(::google::protobuf::RpcController* controller,
-                      const ::photon::RecordSet* request,
-                      ::photon::StatusSet* response,
-                      ::google::protobuf::Closure* done) {
-		MemDB& db = MemDB::instance();
-		db.mset();
-    }
-}; // class DBServiceImpl
-
-class CMDServiceImpl : public PhotonCMDService {
-public:
-    CMDServiceImpl() {}
-
-    ~CMDServiceImpl() {}
-}; // class CMDServiceImpl
-
-Service::Service() {
-    _db_impl = new DBServiceImpl();
+Service::Service(const Options& options) {
+    _db_impl = new DBServiceImpl(options);
     _cmd_impl = new CMDServiceImpl();
 }
 

@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "photon_service.pb.h"
 #include "options.h"
 
 namespace photon {

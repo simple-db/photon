@@ -10,6 +10,7 @@
 #include <unordered_map>
 
 #include "options.h"
+#include "photon_service.pb.h"
 
 namespace photon {
 
@@ -37,8 +38,14 @@ public:
      */
 	int set(const Record* key, Status* status);
 
+    /**
+	 * @brief multi-get
+	 */
 	int mget();
 
+	/**
+	 * @brief multi-set
+	 */
 	int mset();
 
 private:

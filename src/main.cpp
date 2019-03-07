@@ -31,7 +31,7 @@ int run(int argc, char** argv) {
 		return ret;
 	}
 
-    Service service;
+    Service service(db_options);
     service.start(FLAGS_port);
 
 	service.join();

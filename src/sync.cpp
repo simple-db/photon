@@ -40,4 +40,12 @@ int Sync::destroy() {
 	return 0;
 }
 
+bool Sync::sync(const RecordSet* records) {
+    return true;
+}
+
+bool Sync::sync(const Record* record) {
+    return true;
+}
+
 } // namespace photon
