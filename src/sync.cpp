@@ -9,7 +9,7 @@
 #include <braft/raft.h>
 
 namespace {
-	static ::photon::Sync* g_instance = nullptr;
+    static ::photon::Sync* g_instance = nullptr;
 }
 
 namespace photon {
@@ -17,34 +17,34 @@ namespace photon {
 /**
  * @brief callback of braft
  */
-class DBSetClosure : public braft::Closure {
+class SyncClosure : public braft::Closure {
 public:
     void Run() {
-		// TODO
-	}
+        // TODO
+    }
 }; // class DBClosure
 
 Sync& Sync::instance() {
-	if (g_instance == nullptr) {
-		g_instance = new Sync();
-	}
+    if (g_instance == nullptr) {
+        g_instance = new Sync();
+    }
 
-	return *g_instance;
+    return *g_instance;
 }
 
 int Sync::init(const Options& option) {
-	return 0;
+    return 0;
 }
 
 int Sync::destroy() {
-	return 0;
+    return 0;
 }
 
-bool Sync::sync(const RecordSet* records) {
+bool Sync::sync(const RecordSet* records, std::function<void()> closure) {
     return true;
 }
 
-bool Sync::sync(const Record* record) {
+bool Sync::sync(const Record* record, std::function<void()> closure) {
     return true;
 }
 

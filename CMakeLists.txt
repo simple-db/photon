@@ -7,7 +7,7 @@ include_directories(./src ./idl)
 aux_source_directory(./src SRCS)
 aux_source_directory(./idl IDL)
 
-link_libraries(brpc protobuf gflags leveldb pthread ssl crypto dl rt)
+link_libraries(brpc braft protobuf gflags leveldb pthread ssl crypto dl rt)
 
 add_definitions(-std=c++11 -static)
 

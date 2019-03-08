@@ -6,7 +6,10 @@
 
 #pragma once
 
+#include <functional>
+
 #include "photon_service.pb.h"
+#include "sync_server.h"
 #include "options.h"
 
 namespace photon {
@@ -22,13 +25,16 @@ public:
 
 	int destroy();
 
-    bool sync(const RecordSet* records);
+    bool sync(const RecordSet* records, std::function<void()> closure);
 
-    bool sync(const Record* record);
+    bool sync(const Record* record, std::function<void()> closure);
 
 private:
 	Sync() {}
 	Sync(const Sync&) {}
+
+private:
+	SyncServer _server;
 }; // class Sync
 
 } // namespace photon
