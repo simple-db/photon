@@ -11,6 +11,7 @@ namespace photon {
 using ::bthread::execution_queue_start;
 using ::bthread::execution_queue_stop;
 using ::bthread::execution_queue_join;
+using ::bthread::execution_queue_execute;
 
 Channel::Channel() {
 }
@@ -47,6 +48,10 @@ int Channel::join() {
 }
 
 bool Channel::enqueue(std::function<void()> task) {
+    if (execution_queue_execute(_exec_queue, task) != 0) {
+        LOG(WARNING) << "enqueue to channel failed";
+        return false;
+    }
     return true;
 }
 
