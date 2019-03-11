@@ -6,6 +6,9 @@
 
 #pragma once
 
+#include <vector>
+
+#include "photon_service.pb.h"
 #include "options.h"
 
 namespace photon {
@@ -20,9 +23,18 @@ public:
 
     int destroy();
 
-    int get_segment_list();
+    /**
+     * @brief get segment list of this photon node
+     */
+    int get_segment_list(std::vector<size_t>* segments);
 
-    int calc_seg_id();
+    /**
+     * @brief calc segment id for this key
+     */
+    bool calc_seg_id(const Key* key, size_t* seg_id);
+
+private:
+    int _num_segments {0};
 }; // class Meta
 
 } // namespace photon

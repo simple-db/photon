@@ -9,6 +9,7 @@
 namespace photon {
 
 const char* error_to_string(int code) {
+    return nullptr;
 }
 
 } // namespace photon
