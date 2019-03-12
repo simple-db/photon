@@ -17,12 +17,18 @@ public:
 
 	~Channel();
 
+    /**
+     * @brief start channel
+     */
     int start();
 
+    /**
+     * @brief push an async task in queue
+     */
     bool enqueue(std::function<void()> task);
 
     /**
-     * @brief Wait all tasks in channel finish
+     * @brief Wait all tasks in channel finished
      */
     int join();
 

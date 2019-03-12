@@ -32,7 +32,7 @@ int Meta::get_segment_list(std::vector<size_t>* segments) {
 }
 
 bool Meta::calc_seg_id(const Key* key, size_t* seg_id) {
-    return 0;
+    return true;
 }
 
 } // namespace photon
