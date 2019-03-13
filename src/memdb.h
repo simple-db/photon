@@ -7,6 +7,7 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 #include <unordered_map>
 
 #include "photon_service.pb.h"
@@ -32,12 +33,12 @@ public:
     /**
      * @brief handle get request
      */
-	int get(const Key* key, Status* status);
+	int get(const Key* key, Status* status, std::function<void()> closure);
 
     /**
      * @brief handle set request
      */
-	int set(const Record* key, Status* status);
+	int set(const Record* key, Status* status, std::function<void()> closure);
 
     /**
 	 * @brief multi-get

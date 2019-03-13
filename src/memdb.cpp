@@ -72,20 +72,26 @@ int MemDB::destroy() {
 	return 0;
 }
 
-int MemDB::get(const Key* key, Status* status) {
+int MemDB::get(const Key* key,
+               Status* status,
+               std::function<void()> closure) {
     size_t seg_id = 0;
     if (!_meta.calc_seg_id(key, &seg_id)) {
         LOG(WARNING) << "fail to calc segment id of key";
         return -1;
     }
 
-    _channels[_seg_chan_map[seg_id]]->enqueue([key, status](void) {
-                
+    Segment* seg = _segments[seg_id];
+    _channels[_seg_chan_map[seg_id]]->enqueue([seg, key, status, closure](void) {
+                seg->get(key, status);
+                closure();
             });
 	return 0;
 }
 
-int MemDB::set(const Record* record, Status* status) {
+int MemDB::set(const Record* record,
+               Status* status,
+               std::function<void()> closure) {
 	return 0;
 }
 
