@@ -14,7 +14,7 @@ Segment::Segment() {
 Segment::~Segment() {
 }
 
-bool Segment::set() {
+bool Segment::set(const Record* record, Status* status) {
     return true;
 }
 

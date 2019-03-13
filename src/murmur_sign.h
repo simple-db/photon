@@ -10,7 +10,7 @@
 
 namespace photon {
 
-class MurmurSign {
+class MurmurSign : public Signature {
 public:
     MurmurSign() {}
 

@@ -23,8 +23,14 @@ public:
 	int num_channels {8};
 
     /**
+     * Total num of segments
      */
 	int num_segments {32};
+
+    /**
+     * Hash func of key
+     */
+    std::string hash_func {"murmur"};
 }; // class Options
 
 } // namespace photon

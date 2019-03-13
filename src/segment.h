@@ -16,7 +16,7 @@ public:
 
     ~Segment();
 
-    bool set();
+    bool set(const Record* record, Status* status);
 	
     bool get(const Key* key, Status* status);
 private:
