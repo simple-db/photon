@@ -6,6 +6,10 @@
 
 #pragma once
 
+#include <vector>
+
+#include "entry.h"
+
 namespace photon {
 
 class Table {
@@ -14,13 +18,18 @@ public:
 
     ~Table();
 
-    int get();
+    const Record* get(const std::string& key);
 
-    int mget();
+    bool set(const Record* record);
 
-    int set();
+private:
+    bool expand();
 
-    int mset();
+private:
+    uint32_t _capacity {197}
+    std::vector<Entry*> _buckets[2];
+    Entry* _head {nullptr};
+    Entry* _tail {nullptr};
 }; // class Table
 
 } // namespace photon
