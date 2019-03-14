@@ -14,6 +14,9 @@ SyncServer::SyncServer() {
 SyncServer::~SyncServer() {
 }
 
+bool SyncServer::start() {
+}
+
 void SyncServer::on_apply(::braft::Iterator& iter) {
 }
     

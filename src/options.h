@@ -31,6 +31,14 @@ public:
      * Hash func of key
      */
     std::string hash_func {"murmur"};
+
+    /**
+     * Cache Strategy
+     * 0: FIFO
+     * 1: LRU
+     * 2: Overflow
+     */
+    int cache_strategy {0};
 }; // class Options
 
 } // namespace photon

@@ -15,6 +15,8 @@ public:
 	SyncServer();
 
     virtual ~SyncServer();
+
+    bool start();
     
 	virtual void on_apply(::braft::Iterator& iter);
     
@@ -36,6 +38,9 @@ public:
 	virtual void on_stop_following(const ::braft::LeaderChangeContext& ctx);
     
 	virtual void on_start_following(const ::braft::LeaderChangeContext& ctx);
+
+private:
+    braft::Node* volatile _node;
 }; // class SyncServer
 
 } // namespace photon
