@@ -8,6 +8,8 @@
 
 #include "photon_service.pb.h"
 
+#include "table.h"
+
 namespace photon {
 
 class Segment {
@@ -19,7 +21,9 @@ public:
     bool set(const Record* record, Status* status);
 	
     bool get(const Key* key, Status* status);
+
 private:
+    Table _table;
 }; // class Segment
 
 } // namespace photon
