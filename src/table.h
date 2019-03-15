@@ -19,6 +19,8 @@ public:
     ~Table();
 
     const Record* get(const std::string& key);
+    
+    bool del(const std::string& key);
 
     bool set(const Record* record);
 

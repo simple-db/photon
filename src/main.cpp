@@ -13,7 +13,7 @@
 
 DEFINE_int32(port, 8080, "service port");
 DEFINE_int32(channels, 4, "num of db channels");
-DEFINE_int32(segments, 32, "num of db blocks");
+DEFINE_int32(segments, 32, "num of db segments");
 
 namespace photon {
 

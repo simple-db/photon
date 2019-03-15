@@ -37,6 +37,9 @@ const Record* Table::get(const std::string& key) {
     }
 }
 
+bool Table::del(const std::string& key) {
+}
+
 bool Table::set(const Record* record) {
     uint32_t token = murmur_hash(record->key().c_str(), record->key().size(), TOKEN_SEED);
     Entry* iter = _buckets[_cur_bucket_set][token % _capacity];
@@ -80,6 +83,7 @@ bool Table::set(const Record* record) {
 
         _buckets[_cur_bucket_set][token % _capacity] = iter;
     }
+
     return true;
 }
 
