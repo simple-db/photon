@@ -9,7 +9,7 @@
 #include <functional>
 
 #include "photon_service.pb.h"
-#include "sync_server.h"
+//#include "sync_server.h"
 #include "options.h"
 
 namespace photon {
@@ -34,7 +34,7 @@ private:
 	Sync(const Sync&) {}
 
 private:
-	SyncServer _server;
+	//SyncServer _server;
 }; // class Sync
 
 } // namespace photon

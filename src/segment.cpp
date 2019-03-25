@@ -18,9 +18,8 @@ bool Segment::set(const Record* record, Status* status) {
     if (_table.set(record)) {
         status->set_ret(0);
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 bool Segment::get(const Key* key, Status* status) {
@@ -29,10 +28,10 @@ bool Segment::get(const Key* key, Status* status) {
         status->set_ret(0);
         status->mutable_value()->set_value(record->value());
         return true;
-    } else {
-        status->set_ret(-1);
-        return false;
     }
+    
+    status->set_ret(-1);
+    return false;
 }
 
 } // namespace photon

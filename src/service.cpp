@@ -9,18 +9,18 @@
 #include <butil/logging.h>
 
 #include "db_service.h"
-#include "cmd_service.h"
+//#include "cmd_service.h"
 
 namespace photon {
 
 Service::Service(const Options& options) {
     _db_impl = new DBServiceImpl(options);
-    _cmd_impl = new CMDServiceImpl();
+    //_cmd_impl = new CMDServiceImpl();
 }
 
 Service::~Service() {
     delete _db_impl;
-    delete _cmd_impl;
+    //delete _cmd_impl;
 }
 
 int Service::start(int port) {
@@ -29,10 +29,12 @@ int Service::start(int port) {
         return -1;
     }
 
+    /*
 	if (_server.AddService(_cmd_impl, brpc::SERVER_DOESNT_OWN_SERVICE) != 0) {
 		LOG(FATAL) << "export cmd service failed";
 		return -1;
 	}
+    */
    
     brpc::ServerOptions server_options;
     if (_server.Start(port, &server_options) != 0) {

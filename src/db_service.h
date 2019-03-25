@@ -41,7 +41,7 @@ public:
                       ::google::protobuf::Closure* done);
 
 private:
-    int _sync_mode;
+    int _sync_mode {0};
 }; // class DBServiceImpl
 
 } // namespace photon

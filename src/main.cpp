@@ -31,10 +31,15 @@ int run(int argc, char** argv) {
 		return ret;
 	}
 
+    LOG(NOTICE) << "photon mem db init success";
     Service service(db_options);
     service.start(FLAGS_port);
 
 	service.join();
+    LOG(NOTICE) << "photon service quit";
+
+    db.destroy();
+    LOG(NOTICE) << "photon mem db quit";
     return 0;
 }
 

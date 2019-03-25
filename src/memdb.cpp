@@ -48,17 +48,17 @@ int MemDB::init(const Options& options) {
         return ret;
     }
 
-    _channels.resize(options.num_channels);
-    for (int i = 0; i < options.num_channels; ++i) {
-        _channels[i] = new Channel();
-        _channels[i]->start();
-    }
-
     std::vector<size_t> seg_list;
     ret = _meta.get_segment_list(&seg_list);
     if (ret != 0) {
         LOG(FATAL) << "get segment list failed";
         return ret;
+    }
+    
+    _channels.resize(options.num_channels);
+    for (int i = 0; i < options.num_channels; ++i) {
+        _channels[i] = new Channel();
+        _channels[i]->start();
     }
 
 	return 0;

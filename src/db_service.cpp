@@ -42,11 +42,10 @@ void DBServiceImpl::set(::google::protobuf::RpcController* controller,
 		    sync.sync(record, [](void){});
 		    done->Run();
         });
-
     } else {
         // By default sync_mode = 0
         Sync& sync = Sync::instance();
-        sync.sync(record, [record, status, done](void){
+        sync.sync(record, [record, status, done](void) {
 			MemDB& db = MemDB::instance();
 			db.set(record, status, [done](void){done->Run();});
 		});

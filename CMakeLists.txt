@@ -9,7 +9,7 @@ aux_source_directory(./idl IDL)
 
 link_libraries(brpc braft protobuf gflags leveldb pthread ssl crypto dl rt)
 
-add_definitions(-std=c++11 -static)
+add_definitions(-std=c++17)
 
 add_executable(photon ${SRCS} ${IDL})
 

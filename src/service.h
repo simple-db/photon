@@ -12,7 +12,7 @@
 namespace photon {
 
 class DBServiceImpl;
-class CMDServiceImpl;
+//class CMDServiceImpl;
 
 class Service {
 public:
@@ -39,7 +39,7 @@ public:
 
 private:
     DBServiceImpl* _db_impl {nullptr};
-    CMDServiceImpl* _cmd_impl {nullptr};
+    //CMDServiceImpl* _cmd_impl {nullptr};
     ::brpc::Server _server;
 }; // class Service
 
