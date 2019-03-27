@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CPP_FLAGS} -O2 -pipe -Wall -W -fPIC -fstrict-aliasi
 
 include_directories(./src ./idl)
 aux_source_directory(./src SRCS)
+aux_source_directory(./cli CLIS)
 aux_source_directory(./idl IDL)
 
 link_libraries(braft brpc protobuf gflags leveldb pthread ssl crypto dl rt)
@@ -13,4 +14,5 @@ link_libraries(braft brpc protobuf gflags leveldb pthread ssl crypto dl rt)
 add_definitions(-std=c++17 -static)
 
 add_executable(photon ${SRCS} ${IDL})
+add_executable(pcli ${CLIS} ${IDL})
 

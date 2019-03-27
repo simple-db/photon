@@ -22,6 +22,6 @@ public:
 
 private:
     braft::Node* _node {nullptr};
-}; // class SyncMachine
+}; // class SyncStateMachine
 
 } // namespace photon
