@@ -16,7 +16,7 @@ class DBServiceImpl;
 
 class Service {
 public:
-    Service(const Options& options);
+    Service();
 
     ~Service();
 
@@ -24,7 +24,7 @@ public:
      * @brief Start Service on port $port
      * @return 0 for success, other for fail
      */
-    int start(int port);
+    int start(const Options& options, int port, int sync_port);
 
     /**
      * @brief Stop Service
@@ -40,7 +40,7 @@ public:
 private:
     DBServiceImpl* _db_impl {nullptr};
     //CMDServiceImpl* _cmd_impl {nullptr};
-    ::brpc::Server _server;
+    ::brpc::Server* _server {nullptr};
 }; // class Service
 
 } // namespace photon

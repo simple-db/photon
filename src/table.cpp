@@ -12,7 +12,7 @@
 
 namespace photon {
 
-const uint32_t TOKEN_SEED = 421439783;
+static const uint32_t TOKEN_SEED = 421439783;
 
 Table::Table() {
     _buckets[_cur_bucket_set].resize(_capacity, nullptr);

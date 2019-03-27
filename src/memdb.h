@@ -38,7 +38,7 @@ public:
     /**
      * @brief handle set request
      */
-	int set(const Record* key, Status* status, std::function<void()> closure);
+	int set(const Record* record, Status* status, std::function<void()> closure);
 
     /**
 	 * @brief multi-get

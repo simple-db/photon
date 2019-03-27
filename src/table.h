@@ -35,7 +35,10 @@ private:
     uint32_t _capacity {197};
     uint32_t _size {0};
     uint8_t _cur_bucket_set {0};
-    std::vector<Entry*> _buckets[2];
+
+    typedef std::vector<Entry*> EntryArray;
+
+    EntryArray _buckets[2];
     Entry* _head {nullptr};
     Entry* _tail {nullptr};
 }; // class Table

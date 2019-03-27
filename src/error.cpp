@@ -9,6 +9,12 @@
 namespace photon {
 
 const char* error_to_string(int code) {
+    switch (code) {
+        case Error::OK:
+            return "ok";
+        case Error::FAIL:
+            return "fail";
+    }
     return nullptr;
 }
 

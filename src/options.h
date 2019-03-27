@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <string>
+
 namespace photon {
 
 class Options {
