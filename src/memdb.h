@@ -56,7 +56,6 @@ private:
 
 private:
 	std::unordered_map<size_t, Segment*> _segments;
-	std::unordered_map<size_t, size_t> _seg_chan_map;
 	std::vector<Channel*> _channels;
     Meta _meta;
 }; // class MemDB

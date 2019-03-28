@@ -55,12 +55,17 @@ int MemDB::init(const Options& options) {
         return ret;
     }
     
+    for (auto seg_id : seg_list) {
+        Segment* segment = new Segment();
+        _segments[seg_id] = segment;
+    }
+    
     _channels.resize(options.num_channels);
     for (int i = 0; i < options.num_channels; ++i) {
         _channels[i] = new Channel();
         _channels[i]->start();
     }
-
+    
 	return 0;
 }
 
@@ -82,7 +87,7 @@ int MemDB::get(const Key* key,
     }
 
     Segment* seg = _segments[seg_id];
-    _channels[_seg_chan_map[seg_id]]->enqueue([seg, key, status, closure](void) {
+    _channels[seg_id % _channels.size()]->enqueue([seg, key, status, closure](void) {
                 seg->get(key, status);
                 closure();
             });
@@ -99,7 +104,7 @@ int MemDB::set(const Record* record,
     }
 
     Segment* seg = _segments[seg_id];
-    _channels[_seg_chan_map[seg_id]]->enqueue([seg, record, status, closure](void) {
+    _channels[seg_id % _channels.size()]->enqueue([seg, record, status, closure](void) {
             seg->set(record, status);
             closure();
         });
