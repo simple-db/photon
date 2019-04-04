@@ -57,6 +57,8 @@ int run(int argc, char** argv) {
 
 } // namespace photon
 
+#ifndef __UNITTEST__
 int main(int argc, char** argv) {
     return ::photon::run(argc, argv);
 }
+#endif

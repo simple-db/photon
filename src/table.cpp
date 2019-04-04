@@ -26,7 +26,7 @@ const Record* Table::get(const std::string& key) {
     uint32_t token = murmur_hash(key.c_str(), key.size(), TOKEN_SEED);
     Entry* iter = _buckets[_cur_bucket_set][token % _capacity];
 
-    while (!equal(key, iter->get()) && iter != nullptr) {
+    while (iter != nullptr && !equal(key, iter->get())) {
         iter = iter->brother;
     }
 
@@ -41,6 +41,9 @@ bool Table::del(const std::string& key) {
 }
 
 bool Table::set(const Record* record) {
+    if (!record->has_key()) {
+        return false;
+    }
     uint32_t token = murmur_hash(record->key().c_str(), record->key().size(), TOKEN_SEED);
     Entry* iter = _buckets[_cur_bucket_set][token % _capacity];
 

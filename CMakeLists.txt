@@ -9,6 +9,8 @@ aux_source_directory(./src SRCS)
 aux_source_directory(./cli CLIS)
 aux_source_directory(./idl IDL)
 
+add_subdirectory(unittest)
+
 link_libraries(braft brpc protobuf gflags leveldb pthread ssl crypto dl rt)
 
 add_definitions(-std=c++17 -static)
