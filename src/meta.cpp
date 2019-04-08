@@ -43,7 +43,7 @@ int Meta::get_segment_list(std::vector<size_t>* segments) {
 }
 
 bool Meta::calc_seg_id(const Key* key, size_t* seg_id) {
-    size_t id = _sign->sign(key->key());
+    size_t id = _sign->sign(key->key()) % _num_segments;
     if (valid_segment(id)) {
         *seg_id = id;
         return true;
@@ -53,7 +53,7 @@ bool Meta::calc_seg_id(const Key* key, size_t* seg_id) {
 }
 
 bool Meta::calc_seg_id(const Record* record, size_t* seg_id) {
-    size_t id = _sign->sign(record->key());
+    size_t id = _sign->sign(record->key()) % _num_segments;
     if (valid_segment(id)) {
         *seg_id = id;
         return true;

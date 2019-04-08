@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 
 project (photon)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CPP_FLAGS} -O2 -pipe -Wall -W -fPIC -fstrict-aliasing -Wno-invalid-offsetof -Wno-unused-parameter -fno-omit-frame-pointer")
+set(CMAKE_CXX_FLAGS "-g ${CMAKE_CPP_FLAGS}-pipe -Wall -W -fPIC -fstrict-aliasing -Wno-invalid-offsetof -Wno-unused-parameter -fno-omit-frame-pointer")
 
 include_directories(./src ./idl)
 aux_source_directory(./src SRCS)

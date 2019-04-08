@@ -87,6 +87,9 @@ int MemDB::get(const Key* key,
     }
 
     Segment* seg = _segments[seg_id];
+    if (!seg) {
+        LOG(WARNING) << "no such segment seg_id=" << seg_id;
+    }
     _channels[seg_id % _channels.size()]->enqueue([seg, key, status, closure](void) {
                 seg->get(key, status);
                 closure();
@@ -98,12 +101,15 @@ int MemDB::set(const Record* record,
                Status* status,
                std::function<void()> closure) {
     size_t seg_id = 0;
-    if (_meta.calc_seg_id(record, &seg_id)) {
+    if (!_meta.calc_seg_id(record, &seg_id)) {
         LOG(WARNING) << "fail to calc segment id of record";
         return -1;
     }
 
     Segment* seg = _segments[seg_id];
+    if (!seg) {
+        LOG(WARNING) << "no such segment seg_id=" << seg_id;
+    }
     _channels[seg_id % _channels.size()]->enqueue([seg, record, status, closure](void) {
             seg->set(record, status);
             closure();

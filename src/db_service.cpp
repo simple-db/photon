@@ -17,7 +17,6 @@ void DBServiceImpl::get(::google::protobuf::RpcController* controller,
                         const ::photon::Key* key,
                         ::photon::Status* status,
                         ::google::protobuf::Closure* done) {
-    brpc::ClosureGuard done_guard(done);
     MemDB& db = MemDB::instance();
     db.get(key, status, [done](void){done->Run();});
 }
