@@ -24,6 +24,22 @@ public:
 
     bool set(const Record* record);
 
+    uint32_t capacity() const {
+        return _capacity;
+    }
+
+    uint32_t size() const {
+        return _size;
+    }
+
+    Entry* head() const {
+        return _head;
+    }
+
+    Entry* tail() const {
+        return _tail;
+    }
+
 private:
     bool equal(const std::string& key, const Record* record);
     

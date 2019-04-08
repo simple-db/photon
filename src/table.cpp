@@ -38,6 +38,7 @@ const Record* Table::get(const std::string& key) {
 }
 
 bool Table::del(const std::string& key) {
+    return false;
 }
 
 bool Table::set(const Record* record) {
@@ -64,6 +65,7 @@ bool Table::set(const Record* record) {
                     iter->next = _head;
                     _head->prev = iter;
                     _head = iter;
+                    ++_size;
                     break;
                 }
             }
@@ -80,11 +82,12 @@ bool Table::set(const Record* record) {
     
         _head = iter;
 
-        if (_tail = nullptr) {
+        if (_tail == nullptr) {
             _tail = iter;
         }
 
         _buckets[_cur_bucket_set][token % _capacity] = iter;
+        ++_size;
     }
 
     return true;

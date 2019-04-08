@@ -12,6 +12,6 @@ link_libraries(braft brpc protobuf gflags leveldb pthread ssl crypto dl rt)
 
 ADD_DEFINITIONS(-D__UNITTEST__ -DFMT_HEADER_ONLY)
 
-add_executable(test_table ${TEST_SRCS} ${ORI_SRCS} ${ORI_IDL})
+add_executable(photon_test ${TEST_SRCS} ${ORI_SRCS} ${ORI_IDL})
 
-target_link_libraries(test_table gtest gtest_main)
+target_link_libraries(photon_test gtest gtest_main)
