@@ -5,8 +5,11 @@
 //**********************************************************
 
 #include <atomic>
+#include <thread>
+#include <vector>
 
 #include <gtest/gtest.h>
+#include <fmt/format.h>
 
 #include "memdb.h"
 #include "options.h"
@@ -77,7 +80,35 @@ TEST_F(MemDBTest, get) {
 }
 
 TEST_F(MemDBTest, multithread) {
-    MemDB& db = MemDB::instance();
+    std::vector<std::thread*> threads(10);
+
+    for (int i = 0; i < 10; ++i) {
+        threads[i] = new std::thread([](void){
+            MemDB& db = MemDB::instance();
+            Record* record = new Record();
+            Status* status = new Status();
+
+            for (int i = 0; i < 100; ++i) {
+                record->set_key(fmt::format("hello{}", i));
+                record->set_value("world");
+
+                std::atomic<bool> lock(true);
+    
+                int ret = db.set(record, status, [&lock](void){
+                    lock = false;
+                });
+
+                while (lock) {}
+            }
+
+            delete record;
+            delete status;
+        });
+    }
+
+    for (auto thread : threads) {
+        thread->join();
+    }
 }
 
 TEST_F(MemDBTest, destroy) {

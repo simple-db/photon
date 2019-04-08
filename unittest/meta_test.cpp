@@ -59,6 +59,18 @@ TEST_F(MetaTest, calc_seg_id) {
     ASSERT_EQ(meta.init(options), 0);
 
     Key* key = new Key();
+    key->set_key("hello");
+
+    size_t seg_id = 0;
+    ASSERT_TRUE(meta.calc_seg_id(key, &seg_id));
+    ASSERT_LT(seg_id, options.num_segments);
+
+    Key* key2 = new Key();
+    key->set_key("hello2");
+    size_t seg_id2 = 0;
+    ASSERT_TRUE(meta.calc_seg_id(key2, &seg_id2));
+    ASSERT_LT(seg_id, options.num_segments);
+    ASSERT_NE(seg_id, seg_id2);
 }
 
 
