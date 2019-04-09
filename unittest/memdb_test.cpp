@@ -80,17 +80,43 @@ TEST_F(MemDBTest, get) {
 }
 
 TEST_F(MemDBTest, multithread) {
-    std::vector<std::thread*> threads(10);
+    std::vector<std::thread*> w_threads(10);
+    std::vector<std::thread*> r_threads(10);
 
     for (int i = 0; i < 10; ++i) {
-        threads[i] = new std::thread([](void){
+        r_threads[i] = new std::thread([](void){
+            MemDB& db = MemDB::instance();
+            Key* key = new Key();
+            Status* status = new Status();
+
+            for (int i = 0; i < 100; ++i) {
+                key->set_key(fmt::format("hello{}", i));
+
+                std::atomic<bool> lock(true);
+                
+                int ret = db.get(key, status, [&lock](void){
+                    lock = false;
+                });
+
+                while (lock) {}
+        
+                ASSERT_EQ(ret, 0);
+            }
+
+            delete key;
+            delete status;
+        });
+    }
+
+    for (int i = 0; i < 10; ++i) {
+        w_threads[i] = new std::thread([](void){
             MemDB& db = MemDB::instance();
             Record* record = new Record();
             Status* status = new Status();
 
             for (int i = 0; i < 100; ++i) {
                 record->set_key(fmt::format("hello{}", i));
-                record->set_value("world");
+                record->set_value(fmt::format("world{}", i));
 
                 std::atomic<bool> lock(true);
     
@@ -99,6 +125,8 @@ TEST_F(MemDBTest, multithread) {
                 });
 
                 while (lock) {}
+        
+                ASSERT_EQ(ret, 0);
             }
 
             delete record;
@@ -106,9 +134,36 @@ TEST_F(MemDBTest, multithread) {
         });
     }
 
-    for (auto thread : threads) {
+    for (auto thread : w_threads) {
         thread->join();
     }
+
+    for (auto thread : r_threads) {
+        thread->join();
+    }
+
+    MemDB& db = MemDB::instance();
+    Key* key = new Key();
+    Status* status = new Status();
+
+    for (int i = 0; i < 100; ++i) {
+        key->set_key(fmt::format("hello{}", i));
+
+        std::atomic<bool> lock(true);
+                
+        int ret = db.get(key, status, [&lock](void){
+            lock = false;
+        });
+
+        while (lock) {}
+
+        ASSERT_EQ(ret, 0);
+        ASSERT_EQ(status->ret(), 0);
+        ASSERT_EQ(status->value().value().compare(fmt::format("world{}", i)), 0);
+    }
+
+    delete key;
+    delete status;
 }
 
 TEST_F(MemDBTest, destroy) {
