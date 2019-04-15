@@ -1,5 +1,5 @@
 //**********************************************************
-// File: sync_server.h
+// File: state_machine.h
 // Author: wtzhuque@163.com
 // Description:
 //**********************************************************
@@ -7,6 +7,8 @@
 #pragma once
 
 #include <braft/raft.h>
+
+#include "options.h"
 
 namespace photon {
 
@@ -16,9 +18,11 @@ public:
 
     virtual ~SyncStateMachine();
 
-    bool start();
+    bool start(const Options& options);
     
 	virtual void on_apply(::braft::Iterator& iter);
+
+    bool stop();
 
 private:
     braft::Node* _node {nullptr};

@@ -10,6 +10,7 @@
 #include <braft/raft.h>
 
 #include "db_service.h"
+#include "sync.h"
 //#include "cmd_service.h"
 
 namespace photon {
@@ -26,8 +27,8 @@ int Service::start(const Options& options, int port, int sync_port) {
     _server = new ::brpc::Server;
 
     // braft state machine should reuse this brpc server
-    ::braft::add_service(_server, sync_port);
-
+    ::braft::add_service(_server, port);
+    
     if (_server->AddService(_db_impl, brpc::SERVER_DOESNT_OWN_SERVICE) != 0) {
 		LOG(FATAL) << "export memdb service failed";
         return -1;
@@ -44,6 +45,12 @@ int Service::start(const Options& options, int port, int sync_port) {
     if (_server->Start(port, &server_options) != 0) {
 		LOG(FATAL) << "start server failed";
         return -1;
+    }
+
+    Sync& sync = Sync::instance();
+    int ret = sync.init(options);
+    if (ret != 0) {
+        LOG(FATAL) << "init photon sync module failed, error=" << ret;
     }
 
     return 0;

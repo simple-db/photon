@@ -33,10 +33,25 @@ Sync& Sync::instance() {
 }
 
 int Sync::init(const Options& option) {
+    _state_machine = new SyncStateMachine();
+    if (!_state_machine->start(option)) {
+        LOG(FATAL) << "fail to start sync state machine";
+        return -1;
+    }
+
     return 0;
 }
 
 int Sync::destroy() {
+    if (_state_machine != nullptr) {
+        if (_state_machine->stop()) {
+            delete _state_machine;
+            _state_machine = nullptr;
+        } else {
+            LOG(WARNING) << "fail to stop sync state machine, leak ALARM";
+            return -1;
+        }
+    }
     return 0;
 }
 

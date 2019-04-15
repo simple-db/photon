@@ -41,6 +41,21 @@ public:
      * 2: Overflow
      */
     int cache_strategy {0};
+
+    /**
+     * Service port
+     */
+    int port {8080};
+
+    /**
+     * tmp sync data path
+     */
+    std::string sync_data_path {"./"};
+
+    /**
+     * sync configure path
+     */
+    std::string sync_conf_path {""};
 }; // class Options
 
 } // namespace photon

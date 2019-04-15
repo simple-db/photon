@@ -62,8 +62,7 @@ void DBServiceImpl::mset(::google::protobuf::RpcController* controller,
 	} else {
 		Sync& sync = Sync::instance();
 		sync.sync(record_set, [record_set, status_set, done](void) {
-				MemDB& db = MemDB::instance();
-			});
+		});
 	}
 }
 

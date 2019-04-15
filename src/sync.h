@@ -9,7 +9,7 @@
 #include <functional>
 
 #include "photon_service.pb.h"
-#include "sync_server.h"
+#include "state_machine.h"
 #include "options.h"
 
 namespace photon {

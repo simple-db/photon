@@ -11,6 +11,7 @@
 #include "sync.h"
 #include "options.h"
 #include "memdb.h"
+#include "db_service.h"
 
 DEFINE_int32(port, 8080, "service port");
 DEFINE_int32(sync_port, 8081, "data sync port");
@@ -26,6 +27,7 @@ int run(int argc, char** argv) {
 	Options options;
     options.num_channels = FLAGS_channels;
     options.num_segments = FLAGS_segments;
+    options.port = FLAGS_port;
 
 	MemDB& db = MemDB::instance();
 	int ret = db.init(options);
@@ -34,21 +36,40 @@ int run(int argc, char** argv) {
 		return ret;
     }
     LOG(NOTICE) << "photon mem db init success";
-
+    
+    ::brpc::Server server;
+    
+    DBServiceImpl db_svr_impl(options);
+    
+    // export db service
+    if (server.AddService(&db_svr_impl, brpc::SERVER_DOESNT_OWN_SERVICE) != 0) {
+        LOG(FATAL) << "fail to export db service";
+        return -1;
+    }
+   
+    // export raft service
+    ::braft::add_service(&server, FLAGS_port);
+   
+    // start all service
+    brpc::ServerOptions server_options;
+    if (server.Start(FLAGS_port, &server_options) != 0) {
+		LOG(FATAL) << "start server failed";
+        return -1;
+    }
+   
+    // start sync service
     Sync& sync = Sync::instance();
     ret = sync.init(options);
     if (ret != 0) {
         LOG(FATAL) << "init photon sync module failed, error=" << ret;
     }
 
-    Service service;
-    service.start(options, FLAGS_port, FLAGS_sync_port);
+    //Service service;
+    //service.start(options, FLAGS_port, FLAGS_sync_port);
 
-	service.join();
+	//service.join();
+    server.RunUntilAskedToQuit();
     LOG(NOTICE) << "photon service quit";
-
-    sync.destroy();
-    LOG(NOTICE) << "photon stoped sync";
 
     db.destroy();
     LOG(NOTICE) << "bye";
