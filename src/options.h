@@ -22,12 +22,12 @@ public:
     /**
      * Num of op channels
      */
-	int num_channels {8};
+    int num_channels {8};
 
     /**
      * Total num of segments
      */
-	int num_segments {32};
+    int num_segments {32};
 
     /**
      * Hash func of key
@@ -46,6 +46,11 @@ public:
      * Service port
      */
     int port {8080};
+
+    /**
+     * Log in memory
+     */
+    bool log_in_memory {true};
 
     /**
      * tmp sync data path

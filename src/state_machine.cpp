@@ -15,6 +15,9 @@
 
 namespace photon {
 
+static const char* MEMORY_STORAGE_PREFIX = "memory://";
+static const char* LOCAL_STORAGE_PREFIX = "local://";
+
 SyncStateMachine::SyncStateMachine() {
 }
 
@@ -33,10 +36,13 @@ bool SyncStateMachine::start(const Options& options) {
     node_options.fsm = this;
     node_options.node_owns_fsm = false;
     node_options.snapshot_interval_s = 3600;
-    std::string prefix = "local://{}" + options.sync_data_path;
-    node_options.log_uri = prefix + "/log";
-    node_options.raft_meta_uri = prefix + "/raft_meta";
-    node_options.snapshot_uri = prefix + "/snapshot";
+    
+    std::string memory_prefix = MEMORY_STORAGE_PREFIX + options.sync_data_path;
+    std::string local_prefix = LOCAL_STORAGE_PREFIX + options.sync_data_path;
+    
+    node_options.log_uri = memory_prefix + "/log";
+    node_options.raft_meta_uri = local_prefix + "/raft_meta";
+    node_options.snapshot_uri = local_prefix + "/snapshot";
     node_options.disable_cli = false;
 
     braft::Node* node = new braft::Node("group", braft::PeerId(addr));
