@@ -20,7 +20,7 @@ class MetaTest : public ::testing::Test {
 }; // class MetaTest
 
 TEST_F(MetaTest, init) {
-    Meta meta;
+    Meta& meta = Meta::instance();
 
     Options options;
     options.num_channels = 4;
@@ -33,7 +33,7 @@ TEST_F(MetaTest, destroy) {
 }
 
 TEST_F(MetaTest, seg_list) {
-    Meta meta;
+    Meta& meta = Meta::instance();
 
     Options options;
     options.num_channels = 4;
@@ -50,7 +50,7 @@ TEST_F(MetaTest, seg_list) {
 }
 
 TEST_F(MetaTest, calc_seg_id) {
-    Meta meta;
+    Meta& meta = Meta::instance();
 
     Options options;
     options.num_channels = 4;

@@ -12,6 +12,7 @@
 #include <fmt/format.h>
 
 #include "memdb.h"
+#include "meta.h"
 #include "options.h"
 #include "photon_service.pb.h"
 
@@ -21,16 +22,21 @@ using ::photon::Record;
 using ::photon::Status;
 using ::photon::MemDB;
 using ::photon::Options;
+using ::photon::Meta;
 
 class MemDBTest : public ::testing::Test {
 }; // class MemDBTest
 
 TEST_F(MemDBTest, init) {
-    MemDB& db = MemDB::instance();
+
 
     Options options;
     options.num_channels = 4;
     options.num_segments = 16;
+    Meta& meta = Meta::instance();
+    meta.init(options);
+    
+    MemDB& db = MemDB::instance();
     ASSERT_EQ(db.init(options), 0);
 }
 
@@ -67,9 +73,7 @@ TEST_F(MemDBTest, get) {
 
     std::atomic<bool> lock(true);
 
-    int ret = db.get(key, status, [&lock](void){
-        lock = false;
-    });
+    int ret = db.get(key, status, [&lock](void){lock = false;});
 
     ASSERT_EQ(ret, 0);
 

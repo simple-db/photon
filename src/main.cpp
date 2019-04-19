@@ -28,9 +28,16 @@ int run(int argc, char** argv) {
     options.num_channels = FLAGS_channels;
     options.num_segments = FLAGS_segments;
     options.port = FLAGS_port;
+   
+    Meta& meta = Meta::instance();
+    int ret = meta.init(options);
+    if (ret != 0) {
+        LOG(FATAL) << "init meta info failed";
+        return ret;
+    }
 
 	MemDB& db = MemDB::instance();
-	int ret = db.init(options);
+	ret = db.init(options);
 	if (ret != 0) {
 		LOG(FATAL) << "init photon mem db failed, error=" << ret;
 		return ret;

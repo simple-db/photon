@@ -21,7 +21,7 @@ public:
 public:
     ~Sync();
 	
-	int init(const Options& option);
+	int init(const Options& options);
 
     int destroy();
 

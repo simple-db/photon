@@ -42,14 +42,8 @@ int MemDB::init(const Options& options) {
         return -1;
     }
 
-    int ret = _meta.init(options);
-    if (ret != 0) {
-        LOG(FATAL) << "init meta info failed";
-        return ret;
-    }
-
     std::vector<size_t> seg_list;
-    ret = _meta.get_segment_list(&seg_list);
+    int ret = Meta::instance().get_segment_list(&seg_list);
     if (ret != 0) {
         LOG(FATAL) << "get segment list failed";
         return ret;
@@ -81,7 +75,7 @@ int MemDB::get(const Key* key,
                Status* status,
                std::function<void()> closure) {
     size_t seg_id = 0;
-    if (!_meta.calc_seg_id(key, &seg_id)) {
+    if (!Meta::instance().calc_seg_id(key, &seg_id)) {
         LOG(WARNING) << "fail to calc segment id of key";
         return -1;
     }
@@ -101,7 +95,7 @@ int MemDB::set(const Record* record,
                Status* status,
                std::function<void()> closure) {
     size_t seg_id = 0;
-    if (!_meta.calc_seg_id(record, &seg_id)) {
+    if (!Meta::instance().calc_seg_id(record, &seg_id)) {
         LOG(WARNING) << "fail to calc segment id of record";
         return -1;
     }

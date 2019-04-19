@@ -53,9 +53,14 @@ public:
     bool log_in_memory {true};
 
     /**
+     * local path of meta info
+     */
+    std::string local_meta {"./meta/meta.txt"};
+
+    /**
      * tmp sync data path
      */
-    std::string sync_data_path {"./"};
+    std::string sync_data_path {"./data"};
 
     /**
      * sync configure path

@@ -18,6 +18,14 @@ namespace photon {
 static const char* MEMORY_STORAGE_PREFIX = "memory://";
 static const char* LOCAL_STORAGE_PREFIX = "local://";
 
+class SyncClosure : public ::braft::Closure {
+public:
+    void Run() {
+        LOG(INFO) << "sync done";
+        delete this;
+    }
+}; // class SyncClosure
+
 SyncStateMachine::SyncStateMachine() {
 }
 
@@ -59,6 +67,26 @@ bool SyncStateMachine::start(const Options& options) {
 bool SyncStateMachine::stop() {
     return true;
 }
+    
+bool SyncStateMachine::add_peer(const ::butil::EndPoint& peer) {
+    if (_node == nullptr) {
+        return false;
+    }
+
+    SyncClosure* done = new SyncClosure();
+    _node->add_peer(::braft::PeerId(peer), done);
+    return true;
+}
+
+bool SyncStateMachine::remove_peer(const ::butil::EndPoint& peer) {
+    if (_node == nullptr) {
+        return false;
+    }
+
+    SyncClosure* done = new SyncClosure();
+    _node->remove_peer(::braft::PeerId(peer), done);
+    return true;
+}
 
 void SyncStateMachine::on_apply(::braft::Iterator& iter) {
     /*
@@ -69,6 +97,24 @@ void SyncStateMachine::on_apply(::braft::Iterator& iter) {
         iter.next();
     }
     */
+}
+    
+void SyncStateMachine::on_leader_start(int64_t term) {
+    _leader_term.store(term, butil::memory_order_release);
+    LOG(INFO) << "node start working as leader";
+}
+
+void SyncStateMachine::on_leader_stop(const butil::Status& status) {
+    _leader_term.store(-1, butil::memory_order_release);
+    LOG(INFO) << "node stop working as leader";
+}
+
+void SyncStateMachine::on_start_following(const ::braft::LeaderChangeContext& ctx) {
+    LOG(INFO) << "node start following " << ctx;
+}
+    
+void SyncStateMachine::on_stop_following(const ::braft::LeaderChangeContext& ctx) {
+    LOG(INFO) << "node stop following " << ctx;
 }
 
 } // namespace photon 

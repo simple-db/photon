@@ -10,9 +10,18 @@
 
 #include "murmur_sign.h"
 
+namespace {
+    ::photon::Meta* g_instance = nullptr;
+}
+
 namespace photon {
 
-Meta::Meta() {
+Meta& Meta::instance() {
+    if (g_instance == nullptr) {
+        g_instance = new Meta();
+    }
+
+    return *g_instance;
 }
 
 Meta::~Meta() {
@@ -63,6 +72,19 @@ bool Meta::calc_seg_id(const Record* record, size_t* seg_id) {
 }
 
 bool Meta::valid_segment(size_t seg_id) {
+    return true;
+}
+    
+bool Meta::load_local_meta(const std::string& meta) {  
+    return true;
+}
+
+bool Meta::get_group_info(uint64_t group_id,
+                          std::vector<::butil::EndPoint>* group) {
+    return true;
+}
+
+bool Meta::get_group_info(std::vector<::butil::EndPoint>* group) {
     return true;
 }
 

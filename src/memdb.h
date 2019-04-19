@@ -57,7 +57,6 @@ private:
 private:
 	std::unordered_map<size_t, Segment*> _segments;
 	std::vector<Channel*> _channels;
-    Meta _meta;
 }; // class MemDB
 
 } // namespace photon
